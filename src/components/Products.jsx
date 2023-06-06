@@ -1,13 +1,16 @@
 import React from "react";
 import { Card, Col, Container, Row, Button } from "react-bootstrap";
 
-const Products = ({ title, data }) => {
+const Products = ({
+  title,
+  data: { image, link, price, offer, name, date },
+}) => {
   return (
     <>
       <section className="p-5">
         <Container>
           <Row>
-            <h3>Amazon Top Deals</h3>
+            <h3>Top Deals</h3>
             {/* <Card style={{ width: "18rem" }}>
                 <Card.Img variant="top" src="https://picsum.photos/200" />
                 <Card.Body>
@@ -19,12 +22,12 @@ const Products = ({ title, data }) => {
                   <Button variant="primary">Get Link</Button>
                 </Card.Body>
               </Card> */}
-            {data.map(({ name, price, link, date, offer, image }) => (
+            {Array.from({ length: 100 }, () => (
               <Col className="text-dark g-2" lg={3} md={4} sm={6}>
                 <Card>
                   <Card.Img
                     className="h-50"
-                    style={{ maxHeight: "150px" }}
+                    // style={{ maxHeight: "150px" }}
                     variant="top"
                     src={image}
                   />
