@@ -22,8 +22,8 @@ const Products = ({
                   <Button variant="primary">Get Link</Button>
                 </Card.Body>
               </Card> */}
-            {Array.from({ length: 100 }, () => (
-              <Col className="text-dark g-2" lg={3} md={4} sm={6}>
+            {Array.from({ length: 20 }, () => (
+              <Col className="text-dark g-2" key={1} lg={3} md={4} sm={6}>
                 <Card>
                   <Card.Img
                     className="h-50"
@@ -34,7 +34,7 @@ const Products = ({
                   <Card.Body className="bg-light">
                     <Card.Title>{price}</Card.Title>
                     <p>
-                      List: <del class="">{price}</del>
+                      List: <del className="">{price}</del>
                       <span>${offer}</span>
                     </p>
                     <a
@@ -58,9 +58,9 @@ const Products = ({
                   <Card.Body>
                     <Card.Title>{price}</Card.Title>
                     <div className="d-flex mb-1">
-                      <p class="">List: </p>
-                      <del class="">{price}</del>
-                      <p class="">${offer}</p>
+                      <p className="">List: </p>
+                      <del className="">{price}</del>
+                      <p className="">${offer}</p>
                     </div>
                     <a href={link} target="_blank" className="mb-2">
                       {name}
