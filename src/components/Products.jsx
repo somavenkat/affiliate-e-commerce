@@ -1,82 +1,92 @@
 import React from "react";
-import { Card, Col, Container, Row, Button } from "react-bootstrap";
-
+import { Card, Col, Container, Row, Button, Form } from "react-bootstrap";
+import imageAd1 from "../assets/ad1.png";
+import imageAd2 from "../assets/ad2.png";
 const Products = ({
-  title,
-  data: { image, link, price, offer, name, date },
+  pageTitle,
+  data: {
+    imagePath,
+    discount,
+    listPrice,
+    link,
+    createdAt,
+    price,
+    title,
+    description,
+  },
 }) => {
+  const date = new Date(createdAt);
+  const options = { month: "long", day: "numeric", year: "numeric" };
+  const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
+  const ads = [
+    {
+      id: 2,
+      title: "Ad ",
+      description:
+        "Pellentesque tincidunt elit vitae massa sagittis, at sodales ex vestibulum.",
+      imageUrl: imageAd1,
+    },
+    {
+      id: 2,
+      title: "Ad ",
+      description:
+        "Pellentesque tincidunt elit vitae massa sagittis, at sodales ex vestibulum.",
+      imageUrl: imageAd1,
+    },
+    // Add more ads as needed
+  ];
+
   return (
     <>
-      <section className="p-5">
-        <Container>
-          <Row>
-            <h3>Top Deals</h3>
-            {/* <Card style={{ width: "18rem" }}>
-                <Card.Img variant="top" src="https://picsum.photos/200" />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                  <Button variant="primary">Get Link</Button>
-                </Card.Body>
-              </Card> */}
-            {Array.from({ length: 20 }, () => (
-              <Col className="text-dark g-2" key={1} lg={3} md={4} sm={6}>
-                <Card>
-                  <Card.Img
-                    className="h-50"
-                    // style={{ maxHeight: "150px" }}
-                    variant="top"
-                    src={image}
-                  />
-                  <Card.Body className="bg-light">
-                    <Card.Title>{price}</Card.Title>
-                    <p>
-                      List: <del className="">{price}</del>
-                      <span>${offer}</span>
-                    </p>
-                    <a
-                      href={link}
-                      target="_blank"
-                      className="mb-2"
-                      rel="noreferrer"
-                    >
-                      {name}
-                    </a>
-                    <p>{date}</p>
-                    <Card.Text>
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </Card.Text>
-                    <Button variant="primary">Get Link</Button>
-                  </Card.Body>
-                </Card>
-                {/* <Card>
-                  <Card.Img variant="top" src={image} />
-                  <Card.Body>
-                    <Card.Title>{price}</Card.Title>
-                    <div className="d-flex mb-1">
-                      <p className="">List: </p>
-                      <del className="">{price}</del>
-                      <p className="">${offer}</p>
+      <section>
+        {/* <h5 className="my-3 mx-0 px-0">Ads</h5>
+              <div className="ad-container">
+                {ads.map(({ title, description, imageUrl }, index) => (
+                  <>
+                    <div className="ad">
+                      <img
+                        src={imageUrl}
+                        style={{ width: "100%" }}
+                        alt={title}
+                      />
+                      <p>
+                        {title} {index + 1}
+                      </p>
+                      <p>{description}</p>
                     </div>
-                    <a href={link} target="_blank" className="mb-2">
-                      {name}
-                    </a>
-                    <Card.Text>{date}</Card.Text>
-                    <div className="d-flex">
-                      <Button variant="primary" size="small">
-                        Get Link
-                      </Button>
-                    </div>
-                  </Card.Body>
-                </Card> */}
-              </Col>
-            ))}
-          </Row>
-        </Container>
+                  </>
+                ))}
+              </div> */}
+
+        <Card>
+          <Card.Img
+            style={{
+              width: "200px",
+              height: "100px",
+              objectFit: "scale-down",
+              marginLeft: "20px",
+            }}
+            variant="top"
+            src={imagePath}
+          />
+          <Card.Body className="bg-light">
+            <Card.Title>${price}</Card.Title>
+            <p>
+              List: <del className="">${listPrice}</del>
+              <span>(${discount} Offer)</span>
+            </p>
+            <a
+              href={link}
+              target="_blank"
+              className="mb-2 twoLineEllipsis"
+              rel="noreferrer"
+            >
+              {title}
+            </a>
+            <p>{formattedDate}</p>
+            <Card.Text className="twoLineEllipsis">{description}</Card.Text>
+          </Card.Body>
+        </Card>
       </section>
     </>
   );

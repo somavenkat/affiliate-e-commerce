@@ -10,6 +10,8 @@ import {
   NavDropdown,
 } from "react-bootstrap";
 
+import logo from "../../src/assets/logo.png";
+
 const Header = () => {
   return (
     <>
@@ -21,7 +23,9 @@ const Header = () => {
           className="fixed-top p-3"
         >
           <Container>
-            <Navbar.Brand href="#home">SoCalledDeals</Navbar.Brand>
+            <Navbar.Brand href="#home">
+              <img src={logo} alt="logo" style={{ height: "30px" }} />
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="">

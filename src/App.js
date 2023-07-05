@@ -1,13 +1,17 @@
-import { useState } from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import { useEffect, useState } from "react";
+import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import "./App.css";
 import Header from "./components/Header";
 import HeroBanner from "./components/HeroBanner";
 import Products from "./components/Products";
+import { getProducts } from "./components/services/services";
 
 function App() {
+  const [allProducts, setAllProducts] = useState();
   const [amazonData, setAmazonData] = useState([
     {
-      name: "SeoulCeuticals Korean Skin Care Korean Beauty - 20% Vitamin C Hyaluronic Acid Serum + CE Ferulic Acid Provides Potent Anti Aging  Anti Wrinkle Korean Beauty 1oz",
+      name: "SeoulCeuticals Korean",
       price: "$16.50",
       link: "https://www.amazon.com/dp/B08Z7YLNQ3?_encoding=UTF8&linkCode=r02&tag=socalleddeals-20&linkId=amzn1.deals-promotions.ATVPDKIKX0DER.b28aae74_1685661088118&ref_=ihub_rc_td_c_deals-promotions_b28aae74",
       date: "Jun 05, 2023, 01:45 AM",
@@ -52,31 +56,92 @@ function App() {
         "https://m.media-amazon.com/images/I/41HqahXl3jL._SY500_._AC_UL300_SR300,300_.jpg",
     },
   ]);
+
+  const getList = async () => {
+    const products = await getProducts();
+    setAllProducts(products);
+  };
+
+  useEffect(() => {
+    getList();
+  }, []);
+
   return (
     <>
       <Header />
       <HeroBanner />
-      {/* <section className="bg-primary text-light p-5">
-        <div className="container">
-          <div className="d-md-flex justify-content-between align-items-center">
-            <h3 className="mb-3 mb-md-0">Sign Up For Our Newsletter</h3>
+      <div className="p-3">
+        <h4 className="mx-5">Top Deals</h4>
+        <Container>
+          <Row>
+            {Array.from({ length: 6 }, () => (
+              <Col className="text-dark g-2" key={1} lg={2} md={4} sm={6}>
+                <Card>
+                  <Card.Img
+                    className="h-50"
+                    // style={{ maxHeight: "150px" }}
+                    variant="top"
+                    src={amazonData[0].image}
+                  />
+                  <Card.Body className="bg-light">
+                    <Card.Title>{amazonData[0].price}</Card.Title>
+                    <p>
+                      List: <del className="">{amazonData[0].price}</del>
+                      <span>${amazonData[0].offer}</span>
+                    </p>
+                    <a
+                      href={amazonData[0].link}
+                      target="_blank"
+                      className="mb-2"
+                      rel="noreferrer"
+                    >
+                      {amazonData[0].name}
+                    </a>
+                    <p>{amazonData[0].date}</p>
+                    <Card.Text>Some quick example</Card.Text>
+                    {/* <Button variant="primary">Get Link</Button> */}
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </div>
 
-            <div className="input-group news-input">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter Email"
-              />
-              <button className="btn btn-dark btn-lg" type="button">
-                Submit
-              </button>
-            </div>
-          </div>
-        </div>
-      </section> */}
-      <Products title="Amazon Top Deals" data={amazonData[0]} />
+      <>
+        <Container>
+          <Row>
+            <Col md={3}>
+              <h5 className="my-3 mx-0 px-0">Filters</h5>
+            </Col>
+            <Col md={9}>
+              <h4>Search Deals</h4>
+              <div>
+                <Form.Group className="mb-2">
+                  <Form.Control
+                    type="text"
+                    className="rounded"
+                    placeholder="Search deals, coupons, stores and more..."
+                  />
+                </Form.Group>
+              </div>
+              <Row className="pb-5">
+                {allProducts?.map((list, index) => (
+                  <Col className="text-dark g-2" key={1} lg={3} md={4} sm={6}>
+                    <Products
+                      pageTitle="Amazon Top Deals"
+                      key={index}
+                      data={list}
+                    />
+                  </Col>
+                ))}
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+      </>
 
-      <section className="p-5">
+      {/* <section className="p-5">
         <div className="container">
           <div className="row g-4">
             <div className="col-md">
@@ -114,7 +179,7 @@ function App() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <footer className="p-5 bg-dark text-white text-center position-relative">
         <div className="container">
