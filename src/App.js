@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from "react";
-import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
+import { Card, Col, Container, Form, Row } from "react-bootstrap";
 import "./App.css";
 import Header from "./components/Header";
 import HeroBanner from "./components/HeroBanner";
@@ -9,6 +9,7 @@ import { getProducts } from "./components/services/services";
 
 function App() {
   const [allProducts, setAllProducts] = useState();
+  // eslint-disable-next-line no-unused-vars
   const [amazonData, setAmazonData] = useState([
     {
       name: "SeoulCeuticals Korean",

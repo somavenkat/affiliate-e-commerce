@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Card,
-  Col,
-  Container,
-  Nav,
-  Navbar,
-  Row,
-  Button,
-  NavDropdown,
-} from "react-bootstrap";
+import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 
 import logo from "../../src/assets/logo.png";
 

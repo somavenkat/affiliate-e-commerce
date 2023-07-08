@@ -1,7 +1,6 @@
 import React from "react";
-import { Card, Col, Container, Row, Button, Form } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import imageAd1 from "../assets/ad1.png";
-import imageAd2 from "../assets/ad2.png";
 const Products = ({
   pageTitle,
   data: {
@@ -35,6 +34,7 @@ const Products = ({
     },
     // Add more ads as needed
   ];
+  console.log("ads", ads);
 
   return (
     <>
