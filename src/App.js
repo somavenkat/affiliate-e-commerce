@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Card, Col, Container, Form, Row } from "react-bootstrap";
 import "./App.css";
 import Header from "./components/Header";
@@ -8,6 +8,7 @@ import Products from "./components/Products";
 import { getProducts } from "./components/services/services";
 
 function App() {
+  const loadOnce = useRef(true);
   const [allProducts, setAllProducts] = useState();
   // eslint-disable-next-line no-unused-vars
   const [amazonData, setAmazonData] = useState([
@@ -64,7 +65,10 @@ function App() {
   };
 
   useEffect(() => {
-    getList();
+    if (loadOnce.current) {
+      loadOnce.current = false;
+      getList();
+    }
   }, []);
 
   return (
