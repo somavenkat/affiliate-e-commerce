@@ -75,7 +75,7 @@ function App() {
     <>
       <Header />
       <HeroBanner />
-      <div className="p-3">
+      {/* <div className="p-3">
         <h4 className="mx-5">Top Deals</h4>
         <Container>
           <Row>
@@ -84,7 +84,6 @@ function App() {
                 <Card>
                   <Card.Img
                     className="h-50"
-                    // style={{ maxHeight: "150px" }}
                     variant="top"
                     src={amazonData[0].image}
                   />
@@ -104,17 +103,16 @@ function App() {
                     </a>
                     <p>{amazonData[0].date}</p>
                     <Card.Text>Some quick example</Card.Text>
-                    {/* <Button variant="primary">Get Link</Button> */}
                   </Card.Body>
                 </Card>
               </Col>
             ))}
           </Row>
         </Container>
-      </div>
+      </div> */}
 
       <>
-        <Container>
+        <Container className="pt-3">
           <Row>
             <Col md={3}>
               <h5 className="my-3 mx-0 px-0">Filters</h5>
